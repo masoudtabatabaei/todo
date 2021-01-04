@@ -1,0 +1,46 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.container-1200 {
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+input {
+    padding: 15px 10px;
+    border-radius: 6px;
+    border: 1px solid #aaaaaa;
+    width: 100%;
+    margin: 10px 0 30px;
+    font-size: 1.2em;
+    color: #333333;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 4px;
+    background-color: #fdfdfd;
+    padding: 8px;
+    margin: 7px 0;
+    color: #555555;
+    border: 1px dashed #aaaaaa;
+}
+
+.task-item:hover {
+    background-color: #eeeeee;
+}
+
+.task-item:hover .action {
+    visibility: visible;
+}
+
+.action {
+    visibility: hidden;
+    color: red;
+    cursor: pointer;
+}
