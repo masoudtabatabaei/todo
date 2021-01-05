@@ -1,11 +1,23 @@
+const ENTER_KEY_CODE = 13;
+
 class Todo {
-
     constructor(todoInputId , todoListId) {
-        this.todoInput = document.getElementById(todoListId);
+        this.todoInput = document.getElementById(todoInputId);
         this.todoList = document.getElementById(todoListId);
-        this.todos = ["Test Test Test"];
+        this.todos = [];
 
-        this.render();
+        if (this.todoList.innerText === '') {
+            const emptyListNotice = document.createElement("div");
+            emptyListNotice.innerText = "There are no items in the list";
+
+            this.todoList.append(emptyListNotice);
+        }
+
+        this.todoInput.addEventListener("keyup" , (event) => {
+            if (event.keyCode === ENTER_KEY_CODE) {
+                this.addTodo();
+            }
+        });
     }
 
     renderTodoList(todo) {
@@ -23,9 +35,17 @@ class Todo {
     }
 
     render() {
+        this.todoList.innerText = '';
         for (const todo of this.todos) {
             this.todoList.append(this.renderTodoList(todo));
         }
+    }
+
+    addTodo() {
+        const todo = this.todoInput.value;
+        this.todoInput.value = '';
+        this.todos.push(todo);
+        this.render();
     }
 }
 
