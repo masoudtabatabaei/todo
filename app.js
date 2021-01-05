@@ -17,14 +17,18 @@ class Todo {
 
     renderTodoList(todo) {
         const div = document.createElement("div");
-        const span = document.createElement("span");
+        const deleteLink = document.createElement("span");
 
         div.classList.add("task-item");
-        span.classList.add("action");
+        deleteLink.classList.add("action");
+
+        deleteLink.addEventListener("click" , () => {
+            this.deleteTodo(todo);
+        });
 
         div.innerText = todo;
-        span.innerText = "Delete";
-        div.append(span);
+        deleteLink.innerText = "Delete";
+        div.append(deleteLink);
 
         return div;
     }
@@ -49,6 +53,15 @@ class Todo {
         this.todoInput.value = '';
         this.todos.push(todo);
         this.render();
+    }
+
+    deleteTodo(todo) {
+        const confirmDelete = confirm("Are you sure to delete this todo?");
+        if (confirmDelete) {
+            const indexOfTodo = this.todos.indexOf(todo);
+            this.todos.splice(indexOfTodo , 1);
+            this.render();
+        }
     }
 }
 
