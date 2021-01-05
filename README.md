@@ -1,1 +1,1 @@
-**A Simple Todo Application **
+A Simple Todo Application

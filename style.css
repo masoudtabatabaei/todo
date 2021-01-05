@@ -20,9 +20,6 @@ input {
 }
 
 .task-item {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     border-radius: 4px;
     background-color: #fdfdfd;
     padding: 8px;
@@ -43,4 +40,5 @@ input {
     visibility: hidden;
     color: red;
     cursor: pointer;
+    float: right;
 }
