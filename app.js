@@ -6,18 +6,13 @@ class Todo {
         this.todoList = document.getElementById(todoListId);
         this.todos = [];
 
-        if (this.todoList.innerText === '') {
-            const emptyListNotice = document.createElement("div");
-            emptyListNotice.innerText = "There are no items in the list";
-
-            this.todoList.append(emptyListNotice);
-        }
-
         this.todoInput.addEventListener("keyup" , (event) => {
             if (event.keyCode === ENTER_KEY_CODE) {
                 this.addTodo();
             }
         });
+
+        this.render();
     }
 
     renderTodoList(todo) {
@@ -36,8 +31,16 @@ class Todo {
 
     render() {
         this.todoList.innerText = '';
-        for (const todo of this.todos) {
-            this.todoList.append(this.renderTodoList(todo));
+
+        if (this.todos.length === 0) {
+            const emptyListNotice = document.createElement("div");
+            emptyListNotice.innerText = "There are no items in the list";
+
+            this.todoList.append(emptyListNotice);
+        } else {
+            for (const todo of this.todos) {
+                this.todoList.append(this.renderTodoList(todo));
+            }
         }
     }
 
