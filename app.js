@@ -5,6 +5,9 @@ class Todo {
         this.todoInput = document.getElementById(todoInputId);
         this.todoList = document.getElementById(todoListId);
         this.todos = [];
+        this.storage = window.localStorage;
+
+        this.loadTodoList();
 
         this.todoInput.addEventListener("keyup" , (event) => {
             if (event.keyCode === ENTER_KEY_CODE) {
@@ -52,6 +55,7 @@ class Todo {
         const todo = this.todoInput.value;
         this.todoInput.value = '';
         this.todos.push(todo);
+        this.saveTodoList();
         this.render();
     }
 
@@ -60,8 +64,19 @@ class Todo {
         if (confirmDelete) {
             const indexOfTodo = this.todos.indexOf(todo);
             this.todos.splice(indexOfTodo , 1);
+            this.saveTodoList();
             this.render();
         }
+    }
+
+    saveTodoList() {
+        const todos = JSON.stringify(this.todos);
+        this.storage.setItem("todos" , todos);
+    }
+
+    loadTodoList() {
+        const todos = this.storage.getItem("todos");
+        this.todos = JSON.parse(todos);
     }
 }
 
